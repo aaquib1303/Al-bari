@@ -18,6 +18,7 @@ import {
   CheckCircle,
   Camera,
   ChevronDown,
+  Search,
 } from "lucide-react";
 import { useTranslation } from "@/lib/i18n/context";
 import { LanguageSelector } from "./LanguageSelector";
@@ -109,7 +110,7 @@ export function Navbar({ initialUser }: NavbarProps) {
     try {
       // 1. Clear server-side session cookies
       await fetch("/api/auth/logout", { method: "POST" });
-      
+
       // 2. Clear client-side supabase session
       const supabase = createClient();
       await supabase.auth.signOut();
@@ -127,24 +128,25 @@ export function Navbar({ initialUser }: NavbarProps) {
 
   const publicLinks = [
     { href: "/", label: t.nav.overview, icon: Home },
-    { href: "/dashboard", label: t.nav.dashboard, icon: LayoutDashboard },
+    { href: "/dashboard", label: "Explore Records", icon: Search },
     { href: "/madrasas", label: t.nav.madrasas, icon: Building2 },
+    { href: "/daily-monitoring", label: "Upload Monitoring", icon: Camera },
   ];
 
   const teacherLinks = isTeacher
     ? [
-        { href: "/daily-monitoring", label: "Daily Monitoring", icon: Camera, highlight: true },
-        { href: "/upload", label: t.nav.upload, icon: Upload },
-        { href: "/my-uploads", label: t.nav.myUploads, icon: FolderArchive },
-      ]
+      { href: "/daily-monitoring", label: "Daily Monitoring", icon: Camera, highlight: true },
+      { href: "/upload", label: t.nav.upload, icon: Upload },
+      { href: "/my-uploads", label: t.nav.myUploads, icon: FolderArchive },
+    ]
     : [];
 
   const adminLinks = isAdmin
     ? [
-        { href: "/admin/moderation", label: t.nav.moderation, icon: CheckCircle },
-        { href: "/admin/madrasas", label: t.nav.adminMadrasas, icon: Building2 },
-        { href: "/admin/users", label: t.nav.adminUsers, icon: Users },
-      ]
+      { href: "/admin/moderation", label: t.nav.moderation, icon: CheckCircle },
+      { href: "/admin/madrasas", label: t.nav.adminMadrasas, icon: Building2 },
+      { href: "/admin/users", label: t.nav.adminUsers, icon: Users },
+    ]
     : [];
 
   return (
@@ -154,18 +156,18 @@ export function Navbar({ initialUser }: NavbarProps) {
         Backdrop-blur creates a CSS containing block which breaks fixed position
         of descendant mobile menus on mobile browsers.
       */}
-      <header className="sticky top-0 z-40 w-full border-b border-emerald-900/10 bg-white shadow-2xs">
+      <header className="sticky top-0 z-40 w-full border-b border-primary-900/10 bg-white shadow-2xs">
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
           <div className="flex h-16 sm:h-18 items-center justify-between gap-2 sm:gap-4">
-            
+
             {/* Logo & Brand */}
             <Link href="/" className="flex items-center gap-2 sm:gap-3 shrink min-w-0 group">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-emerald-800 to-emerald-950 flex items-center justify-center text-amber-400 shadow-md group-hover:scale-105 transition-transform border border-amber-500/30 shrink-0">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-primary-700 to-primary-950 flex items-center justify-center text-amber-400 shadow-md group-hover:scale-105 transition-transform border border-amber-500/30 shrink-0">
                 <span className="font-bold text-base sm:text-xl">ب</span>
               </div>
               <div className="flex flex-col min-w-0">
-                <span className="font-bold text-sm sm:text-base lg:text-lg tracking-tight text-emerald-950 leading-tight truncate">
-                  {t.appName}
+                <span className="font-bold text-sm sm:text-base lg:text-lg tracking-tight text-primary-950 leading-tight truncate">
+                  Al Bari
                 </span>
                 <span className="hidden sm:inline text-[10px] sm:text-xs text-amber-700 font-medium tracking-wide">
                   Islamic Education Foundation
@@ -182,13 +184,12 @@ export function Navbar({ initialUser }: NavbarProps) {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-all ${
-                      isActive
-                        ? "bg-emerald-50 text-emerald-900 font-semibold border border-emerald-200/80 shadow-2xs"
-                        : "text-slate-600 hover:text-emerald-950 hover:bg-slate-50"
-                    }`}
+                    className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-all ${isActive
+                        ? "bg-primary-50 text-primary-900 font-semibold border border-primary-200/80 shadow-2xs"
+                        : "text-slate-600 hover:text-primary-950 hover:bg-slate-50"
+                      }`}
                   >
-                    <Icon className="w-4 h-4 text-emerald-700" />
+                    <Icon className="w-4 h-4 text-primary-700" />
                     <span>{link.label}</span>
                   </Link>
                 );
@@ -200,11 +201,10 @@ export function Navbar({ initialUser }: NavbarProps) {
                   <div className="h-4 w-px bg-slate-200 mx-1" />
                   <Link
                     href="/daily-monitoring"
-                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs xl:text-sm font-bold transition-all shadow-2xs ${
-                      pathname === "/daily-monitoring"
+                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs xl:text-sm font-bold transition-all shadow-2xs ${pathname === "/daily-monitoring"
                         ? "bg-amber-400 text-slate-950 border border-amber-500"
-                        : "bg-emerald-800 text-white hover:bg-emerald-700"
-                    }`}
+                        : "bg-primary-700 text-white hover:bg-primary-600"
+                      }`}
                   >
                     <Camera className="w-3.5 h-3.5 text-amber-300" />
                     <span>Daily Monitoring</span>
@@ -212,25 +212,23 @@ export function Navbar({ initialUser }: NavbarProps) {
 
                   <Link
                     href="/upload"
-                    className={`inline-flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-all ${
-                      pathname === "/upload"
-                        ? "bg-emerald-50 text-emerald-900 font-semibold"
-                        : "text-slate-600 hover:text-emerald-950 hover:bg-slate-50"
-                    }`}
+                    className={`inline-flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-all ${pathname === "/upload"
+                        ? "bg-primary-50 text-primary-900 font-semibold"
+                        : "text-slate-600 hover:text-primary-950 hover:bg-slate-50"
+                      }`}
                   >
-                    <Upload className="w-3.5 h-3.5 text-emerald-700" />
+                    <Upload className="w-3.5 h-3.5 text-primary-700" />
                     <span>{t.nav.upload}</span>
                   </Link>
 
                   <Link
                     href="/my-uploads"
-                    className={`inline-flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-all ${
-                      pathname === "/my-uploads"
-                        ? "bg-emerald-50 text-emerald-900 font-semibold"
-                        : "text-slate-600 hover:text-emerald-950 hover:bg-slate-50"
-                    }`}
+                    className={`inline-flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-all ${pathname === "/my-uploads"
+                        ? "bg-primary-50 text-primary-900 font-semibold"
+                        : "text-slate-600 hover:text-primary-950 hover:bg-slate-50"
+                      }`}
                   >
-                    <FolderArchive className="w-3.5 h-3.5 text-emerald-700" />
+                    <FolderArchive className="w-3.5 h-3.5 text-primary-700" />
                     <span>{t.nav.myUploads}</span>
                   </Link>
                 </>
@@ -242,37 +240,34 @@ export function Navbar({ initialUser }: NavbarProps) {
                   <div className="h-4 w-px bg-slate-200 mx-1" />
                   <Link
                     href="/admin/users"
-                    className={`inline-flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-all ${
-                      pathname.startsWith("/admin/users")
-                        ? "bg-emerald-100/70 text-emerald-950 font-semibold"
-                        : "text-slate-600 hover:text-emerald-950 hover:bg-slate-50"
-                    }`}
+                    className={`inline-flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-all ${pathname.startsWith("/admin/users")
+                        ? "bg-primary-100/70 text-primary-950 font-semibold"
+                        : "text-slate-600 hover:text-primary-950 hover:bg-slate-50"
+                      }`}
                   >
-                    <Users className="w-3.5 h-3.5 text-emerald-800" />
+                    <Users className="w-3.5 h-3.5 text-primary-800" />
                     <span>Teachers</span>
                   </Link>
 
                   <Link
                     href="/admin/madrasas"
-                    className={`inline-flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-all ${
-                      pathname.startsWith("/admin/madrasas")
-                        ? "bg-emerald-100/70 text-emerald-950 font-semibold"
-                        : "text-slate-600 hover:text-emerald-950 hover:bg-slate-50"
-                    }`}
+                    className={`inline-flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-all ${pathname.startsWith("/admin/madrasas")
+                        ? "bg-primary-100/70 text-primary-950 font-semibold"
+                        : "text-slate-600 hover:text-primary-950 hover:bg-slate-50"
+                      }`}
                   >
-                    <Building2 className="w-3.5 h-3.5 text-emerald-800" />
+                    <Building2 className="w-3.5 h-3.5 text-primary-800" />
                     <span>Madrasas</span>
                   </Link>
 
                   <Link
                     href="/admin/moderation"
-                    className={`inline-flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-all ${
-                      pathname.startsWith("/admin/moderation")
-                        ? "bg-emerald-100/70 text-emerald-950 font-semibold"
-                        : "text-slate-600 hover:text-emerald-950 hover:bg-slate-50"
-                    }`}
+                    className={`inline-flex items-center gap-1 px-2 py-1.5 rounded-lg text-xs xl:text-sm font-medium transition-all ${pathname.startsWith("/admin/moderation")
+                        ? "bg-primary-100/70 text-primary-950 font-semibold"
+                        : "text-slate-600 hover:text-primary-950 hover:bg-slate-50"
+                      }`}
                   >
-                    <CheckCircle className="w-3.5 h-3.5 text-emerald-800" />
+                    <CheckCircle className="w-3.5 h-3.5 text-primary-800" />
                     <span>Moderate</span>
                   </Link>
                 </>
@@ -289,7 +284,7 @@ export function Navbar({ initialUser }: NavbarProps) {
                     <span className="text-xs font-bold text-slate-900 truncate max-w-[120px]">
                       {user.full_name || "User"}
                     </span>
-                    <span className="text-[10px] uppercase font-extrabold text-emerald-800">
+                    <span className="text-[10px] uppercase font-extrabold text-primary-800">
                       {user.role}
                     </span>
                   </div>
@@ -348,19 +343,19 @@ export function Navbar({ initialUser }: NavbarProps) {
           />
 
           {/* Drawer Menu Panel */}
-          <div className="relative w-full max-h-[90vh] bg-white border-b-2 border-emerald-800 shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-top-4 duration-200">
+          <div className="relative w-full max-h-[90vh] bg-white border-b-2 border-primary-700 shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-top-4 duration-200">
             {/* Top Close bar */}
-            <div className="flex items-center justify-between px-4 py-3 bg-emerald-950 text-white border-b border-emerald-800">
+            <div className="flex items-center justify-between px-4 py-3 bg-primary-950 text-white border-b border-primary-800">
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-amber-400" />
-                <span className="text-xs font-bold tracking-wider uppercase text-emerald-200">
+                <span className="text-xs font-bold tracking-wider uppercase text-primary-200">
                   Navigation Menu
                 </span>
               </div>
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(false)}
-                className="p-1.5 rounded-lg text-emerald-200 hover:text-white hover:bg-emerald-900 transition-colors"
+                className="p-1.5 rounded-lg text-primary-200 hover:text-white hover:bg-primary-900 transition-colors"
                 aria-label="Close menu"
               >
                 <X className="w-5 h-5" />
@@ -371,15 +366,15 @@ export function Navbar({ initialUser }: NavbarProps) {
             <div className="p-4 sm:p-5 overflow-y-auto space-y-4">
               {/* User Identity / Auth Card */}
               {user ? (
-                <div className="p-3.5 bg-emerald-50/90 rounded-2xl border border-emerald-200 flex items-center justify-between gap-3 shadow-2xs">
+                <div className="p-3.5 bg-primary-50/90 rounded-2xl border border-primary-200 flex items-center justify-between gap-3 shadow-2xs">
                   <div className="min-w-0">
                     <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
                       Logged in as
                     </p>
-                    <p className="text-sm font-extrabold text-emerald-950 truncate">
+                    <p className="text-sm font-extrabold text-primary-950 truncate">
                       {user.full_name || "Faculty"}
                     </p>
-                    <span className="inline-block mt-0.5 px-2 py-0.5 text-[10px] font-extrabold uppercase bg-emerald-800 text-white rounded">
+                    <span className="inline-block mt-0.5 px-2 py-0.5 text-[10px] font-extrabold uppercase bg-primary-700 text-white rounded">
                       {user.role}
                     </span>
                   </div>
@@ -414,11 +409,11 @@ export function Navbar({ initialUser }: NavbarProps) {
                     <Camera className="w-3.5 h-3.5 text-amber-600" />
                     <span>Daily Progress & Uploads</span>
                   </div>
-                  
+
                   <Link
                     href="/daily-monitoring"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center justify-between p-3 rounded-xl bg-gradient-to-r from-emerald-800 to-emerald-950 text-white shadow-md border border-amber-400/40 group active:scale-[0.99] transition-transform"
+                    className="flex items-center justify-between p-3 rounded-xl bg-gradient-to-r from-primary-700 to-primary-950 text-white shadow-md border border-amber-400/40 group active:scale-[0.99] transition-transform"
                   >
                     <div className="flex items-center gap-3">
                       <div className="w-9 h-9 rounded-lg bg-amber-400 text-slate-950 flex items-center justify-center font-bold shrink-0">
@@ -429,7 +424,7 @@ export function Navbar({ initialUser }: NavbarProps) {
                           <span>Daily Academic Monitoring</span>
                           <span className="text-[9px] px-1.5 py-0.5 rounded bg-amber-400 text-slate-950 font-black uppercase">Fast</span>
                         </p>
-                        <p className="text-[11px] text-emerald-200">Upload notebook & blackboard</p>
+                        <p className="text-[11px] text-primary-200">Upload notebook & blackboard</p>
                       </div>
                     </div>
                   </Link>
@@ -438,26 +433,24 @@ export function Navbar({ initialUser }: NavbarProps) {
                     <Link
                       href="/upload"
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`flex items-center gap-2 p-2.5 rounded-xl text-xs font-semibold border transition-all ${
-                        pathname === "/upload"
-                          ? "bg-emerald-100/70 text-emerald-950 border-emerald-300"
+                      className={`flex items-center gap-2 p-2.5 rounded-xl text-xs font-semibold border transition-all ${pathname === "/upload"
+                          ? "bg-primary-100/70 text-primary-950 border-primary-300"
                           : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
-                      }`}
+                        }`}
                     >
-                      <Upload className="w-4 h-4 text-emerald-700 shrink-0" />
+                      <Upload className="w-4 h-4 text-primary-700 shrink-0" />
                       <span>{t.nav.upload}</span>
                     </Link>
 
                     <Link
                       href="/my-uploads"
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`flex items-center gap-2 p-2.5 rounded-xl text-xs font-semibold border transition-all ${
-                        pathname === "/my-uploads"
-                          ? "bg-emerald-100/70 text-emerald-950 border-emerald-300"
+                      className={`flex items-center gap-2 p-2.5 rounded-xl text-xs font-semibold border transition-all ${pathname === "/my-uploads"
+                          ? "bg-primary-100/70 text-primary-950 border-primary-300"
                           : "bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100"
-                      }`}
+                        }`}
                     >
-                      <FolderArchive className="w-4 h-4 text-emerald-700 shrink-0" />
+                      <FolderArchive className="w-4 h-4 text-primary-700 shrink-0" />
                       <span>{t.nav.myUploads}</span>
                     </Link>
                   </div>
@@ -467,8 +460,8 @@ export function Navbar({ initialUser }: NavbarProps) {
               {/* ADMIN PANEL SHORTCUTS */}
               {isAdmin && (
                 <div className="space-y-1.5 pt-2 border-t border-slate-100">
-                  <div className="px-1 text-[11px] font-extrabold text-emerald-900 uppercase tracking-wider flex items-center gap-1.5">
-                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
+                  <div className="px-1 text-[11px] font-extrabold text-primary-900 uppercase tracking-wider flex items-center gap-1.5">
+                    <ShieldCheck className="w-3.5 h-3.5 text-primary-700" />
                     <span>Administration Center</span>
                   </div>
 
@@ -476,39 +469,36 @@ export function Navbar({ initialUser }: NavbarProps) {
                     <Link
                       href="/admin/users"
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all ${
-                        pathname.startsWith("/admin/users")
-                          ? "bg-emerald-800 text-white"
+                      className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all ${pathname.startsWith("/admin/users")
+                          ? "bg-primary-700 text-white"
                           : "text-slate-700 hover:bg-slate-100"
-                      }`}
+                        }`}
                     >
-                      <Users className="w-4 h-4 text-emerald-700" />
+                      <Users className="w-4 h-4 text-primary-700" />
                       <span>Manage Teachers & Accounts</span>
                     </Link>
 
                     <Link
                       href="/admin/madrasas"
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all ${
-                        pathname.startsWith("/admin/madrasas")
-                          ? "bg-emerald-800 text-white"
+                      className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all ${pathname.startsWith("/admin/madrasas")
+                          ? "bg-primary-700 text-white"
                           : "text-slate-700 hover:bg-slate-100"
-                      }`}
+                        }`}
                     >
-                      <Building2 className="w-4 h-4 text-emerald-700" />
+                      <Building2 className="w-4 h-4 text-primary-700" />
                       <span>Manage Madrasas</span>
                     </Link>
 
                     <Link
                       href="/admin/moderation"
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all ${
-                        pathname.startsWith("/admin/moderation")
-                          ? "bg-emerald-800 text-white"
+                      className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all ${pathname.startsWith("/admin/moderation")
+                          ? "bg-primary-700 text-white"
                           : "text-slate-700 hover:bg-slate-100"
-                      }`}
+                        }`}
                     >
-                      <CheckCircle className="w-4 h-4 text-emerald-700" />
+                      <CheckCircle className="w-4 h-4 text-primary-700" />
                       <span>Moderate Posts & Records</span>
                     </Link>
                   </div>
@@ -529,13 +519,12 @@ export function Navbar({ initialUser }: NavbarProps) {
                       key={link.href}
                       href={link.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all ${
-                        isActive
-                          ? "bg-emerald-50 text-emerald-950 border border-emerald-200"
+                      className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all ${isActive
+                          ? "bg-primary-50 text-primary-950 border border-primary-200"
                           : "text-slate-700 hover:bg-slate-100"
-                      }`}
+                        }`}
                     >
-                      <Icon className="w-4 h-4 text-emerald-700" />
+                      <Icon className="w-4 h-4 text-primary-700" />
                       <span>{link.label}</span>
                     </Link>
                   );

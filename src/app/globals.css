@@ -8,6 +8,25 @@
   --font-noto-sans: 'Noto Sans', system-ui, -apple-system, sans-serif;
   --font-noto-devanagari: 'Noto Sans Devanagari', 'Noto Sans', sans-serif;
   --font-noto-urdu: 'Noto Nastaliq Urdu', 'Noto Sans', serif;
+
+  /* ============================================================
+   * 🎨 PRIMARY THEME COLOUR — Edit these to change the whole app.
+   *    HMR hot-reloads this file instantly, no server restart needed.
+   *    Current palette: soft sky blue (lighter shades).
+   *    To go lighter → increase the hex brightness.
+   *    To go darker  → decrease the hex brightness.
+   * ============================================================ */
+  --p-50:  #f0f9ff;   /* lightest tint — page backgrounds        */
+  --p-100: #e0f2fe;   /* light tint — hover backgrounds          */
+  --p-200: #bae6fd;   /* border / divider accents                */
+  --p-300: #7dd3fc;   /* subtle highlights                       */
+  --p-400: #38bdf8;   /* ← lighter action colour (try this)      */
+  --p-500: #38bdf8;   /* ← DEFAULT primary (buttons, active tabs)*/
+  --p-600: #0ea5e9;   /* slightly deeper — hover states          */
+  --p-700: #0284c7;   /* icon colour                             */
+  --p-800: #0369a1;   /* badge backgrounds                       */
+  --p-900: #075985;   /* navbar / deep backgrounds               */
+  --p-950: #0c4a6e;   /* darkest — footer                        */
 }
 
 [lang="ur"] {
@@ -30,7 +49,7 @@ body {
 
 /* Islamic Geometric Border Motif Accent */
 .islamic-pattern {
-  background-color: #064e3b;
+  background-color: #0c4a6e;
   background-image: radial-gradient(circle at 50% 50%, rgba(217, 119, 6, 0.12) 1px, transparent 1px);
   background-size: 24px 24px;
 }
@@ -44,13 +63,16 @@ body {
   width: 6px;
   height: 6px;
 }
+
 ::-webkit-scrollbar-track {
   background: #f1f5f9;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #cbd5e1;
   border-radius: 3px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }

@@ -591,7 +591,7 @@ export function DirectDriveUploader({
                       {item.isImage ? (
                         <ImageIcon className="w-5 h-5 text-emerald-700" />
                       ) : (
-                        <FileText className="w-5 h-5 text-sky-700" />
+                        <FileText className="w-5 h-5 text-primary-700" />
                       )}
                     </div>
                     <div className="min-w-0 flex-1">

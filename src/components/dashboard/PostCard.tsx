@@ -82,7 +82,7 @@ export function PostCard({ post, currentUser, onDeleted }: PostCardProps) {
   };
 
   return (
-    <div className="group relative flex flex-col bg-white rounded-2xl border border-slate-200/90 hover:border-emerald-300 shadow-2xs hover:shadow-md transition-all overflow-hidden">
+    <div className="group relative flex flex-col bg-white rounded-2xl border border-slate-200/90 hover:border-primary-300 shadow-2xs hover:shadow-md transition-all overflow-hidden">
       {/* Admin Delete Action Button (ONLY VISIBLE TO HEAD ADMINISTRATOR) */}
       {currentUser?.role === "admin" && (
         <div className="absolute top-3 right-3 z-20">
@@ -202,7 +202,7 @@ export function PostCard({ post, currentUser, onDeleted }: PostCardProps) {
           {/* Badges on Top Left */}
           <div className="absolute top-3 left-3 flex gap-1.5 flex-wrap z-10 pointer-events-none">
             {isDailyMonitoring ? (
-              <Badge variant="success" className="shadow-xs backdrop-blur-md font-bold text-[11px] gap-1 bg-emerald-800 text-amber-300 border-amber-400/40">
+              <Badge variant="success" className="shadow-xs backdrop-blur-md font-bold text-[11px] gap-1 bg-primary-800 text-amber-300 border-amber-400/40">
                 <BookOpen className="w-3 h-3" />
                 <span>Daily Monitoring</span>
               </Badge>
@@ -211,7 +211,7 @@ export function PostCard({ post, currentUser, onDeleted }: PostCardProps) {
                 <Badge className="shadow-xs backdrop-blur-md font-black text-[11px] bg-amber-400 text-slate-950 border border-amber-500">
                   🏷️ {post.title.includes(":") ? post.title.split(":")[0] : post.title}
                 </Badge>
-                <Badge className="shadow-xs backdrop-blur-md text-[10px] font-semibold bg-emerald-950/80 text-emerald-100 border border-emerald-700/60">
+                <Badge className="shadow-xs backdrop-blur-md text-[10px] font-semibold bg-primary-950/80 text-primary-100 border border-primary-700/60">
                   {categoryName}
                 </Badge>
               </>
@@ -219,7 +219,7 @@ export function PostCard({ post, currentUser, onDeleted }: PostCardProps) {
           </div>
         </div>
       ) : post.files && post.files.length > 0 ? (
-        <Link href={`/posts/${post.id}`} className="relative w-full bg-gradient-to-br from-emerald-950 via-slate-900 to-emerald-900 h-44 flex items-center justify-center p-6 text-white group-hover:from-emerald-900 transition-colors">
+        <Link href={`/posts/${post.id}`} className="relative w-full bg-gradient-to-br from-primary-950 via-slate-900 to-primary-900 h-44 flex items-center justify-center p-6 text-white group-hover:from-primary-900 transition-colors">
           <div className="text-center space-y-1.5">
             <div className="w-11 h-11 mx-auto rounded-xl bg-white/10 flex items-center justify-center text-amber-300 border border-white/15 shadow-inner">
               <FileText className="w-6 h-6" />
@@ -238,7 +238,7 @@ export function PostCard({ post, currentUser, onDeleted }: PostCardProps) {
       ) : (
         <div className="p-4 sm:p-5 pb-0 flex items-center justify-between flex-wrap gap-2">
           {isDailyMonitoring ? (
-            <Badge variant="success" className="font-bold text-[11px] gap-1 bg-emerald-800 text-amber-300">
+            <Badge variant="success" className="font-bold text-[11px] gap-1 bg-primary-800 text-amber-300">
               <BookOpen className="w-3 h-3" />
               <span>Daily Monitoring</span>
             </Badge>
@@ -247,7 +247,7 @@ export function PostCard({ post, currentUser, onDeleted }: PostCardProps) {
               <Badge className="font-black text-[11px] bg-amber-400 text-slate-950 border border-amber-500">
                 🏷️ {post.title.includes(":") ? post.title.split(":")[0] : post.title}
               </Badge>
-              <Badge className="text-[10px] font-semibold bg-emerald-100 text-emerald-950 border border-emerald-300">
+              <Badge className="text-[10px] font-semibold bg-primary-100 text-primary-950 border border-primary-300">
                 {categoryName}
               </Badge>
             </div>
@@ -260,7 +260,7 @@ export function PostCard({ post, currentUser, onDeleted }: PostCardProps) {
         <div>
           {/* Post Title (Date + Madrasa Name) */}
           <h3
-            className="text-base font-bold text-slate-900 group-hover:text-emerald-900 line-clamp-2 transition-colors mb-2 leading-snug"
+            className="text-base font-bold text-slate-900 group-hover:text-primary-900 line-clamp-2 transition-colors mb-2 leading-snug"
             dir="auto"
           >
             {post.title}
@@ -270,7 +270,7 @@ export function PostCard({ post, currentUser, onDeleted }: PostCardProps) {
           {post.description && (
             <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-100 mb-3 text-xs text-slate-700 leading-relaxed space-y-1">
               {isDailyMonitoring && (
-                <div className="flex items-center gap-1 text-[10px] font-bold text-emerald-800 uppercase tracking-wider">
+                <div className="flex items-center gap-1 text-[10px] font-bold text-primary-800 uppercase tracking-wider">
                   <MessageSquare className="w-3 h-3" />
                   <span>Today&apos;s Lesson &amp; Progress Notes:</span>
                 </div>
@@ -286,7 +286,7 @@ export function PostCard({ post, currentUser, onDeleted }: PostCardProps) {
         <div className="space-y-2 pt-3 border-t border-slate-100 text-xs text-slate-600">
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-1.5 truncate">
-              <Building2 className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
+              <Building2 className="w-3.5 h-3.5 text-primary-700 shrink-0" />
               <span className="truncate font-semibold text-slate-900">
                 {post.madrasa?.name || "Madrasa"}
               </span>

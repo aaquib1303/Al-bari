@@ -11,7 +11,7 @@ export function Badge({ className, variant = "default", ...props }: BadgeProps) 
     success: "bg-emerald-100 text-emerald-800 border-emerald-300",
     warning: "bg-amber-100 text-amber-800 border-amber-300",
     danger: "bg-rose-100 text-rose-800 border-rose-300",
-    info: "bg-sky-100 text-sky-800 border-sky-300",
+    info: "bg-primary-100 text-primary-800 border-primary-300",
     gold: "bg-amber-50 text-amber-900 border-amber-400 font-medium",
     outline: "text-slate-700 border-slate-300",
   };

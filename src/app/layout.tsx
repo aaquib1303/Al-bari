@@ -2,10 +2,9 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/i18n/context";
 import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "Al Bari Organization Hub",
+  title: "Al Bari",
   description: "Islamic Education Foundation Centralized Records & Resource Portal",
 };
 
@@ -13,7 +12,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#064e3b",
+  themeColor: "#0284c7",
 };
 
 export default function RootLayout({
@@ -22,12 +21,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="min-h-screen flex flex-col bg-[#fcfbf7] text-slate-900 antialiased selection:bg-amber-200 selection:text-amber-950">
+    <html lang="en" className="h-full">
+      <body className="h-full flex flex-col bg-white text-slate-900 antialiased selection:bg-amber-200 selection:text-amber-950">
         <LanguageProvider>
           <Navbar />
-          <main className="flex-1 w-full">{children}</main>
-          <Footer />
+          {children}
         </LanguageProvider>
       </body>
     </html>

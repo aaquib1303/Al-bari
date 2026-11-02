@@ -277,7 +277,7 @@ export default function DashboardPage() {
         </Card>
 
         <Card className="p-3 sm:p-4 rounded-xl border-slate-200/90 shadow-2xs">
-          <div className="flex items-center gap-2 mb-1 text-sky-700">
+          <div className="flex items-center gap-2 mb-1 text-primary-700">
             <Users className="w-4 h-4" />
             <span className="text-[11px] font-semibold uppercase">{t.dashboard.kpi.activeTeachers}</span>
           </div>

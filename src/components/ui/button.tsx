@@ -10,11 +10,11 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "primary", size = "md", isLoading, children, disabled, ...props }, ref) => {
     const baseStyles =
-      "inline-flex items-center justify-center font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none rounded-lg select-none active:scale-[0.98]";
+      "inline-flex items-center justify-center font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none rounded-lg select-none active:scale-[0.98]";
 
     const variants = {
-      primary: "bg-emerald-800 text-white hover:bg-emerald-900 shadow-sm border border-emerald-900/30",
-      secondary: "bg-emerald-50 text-emerald-900 hover:bg-emerald-100 border border-emerald-200",
+      primary: "bg-primary-700 text-white hover:bg-primary-800 shadow-sm border border-primary-800/30",
+      secondary: "bg-primary-50 text-primary-900 hover:bg-primary-100 border border-primary-200",
       outline: "border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 hover:text-slate-900 shadow-xs",
       danger: "bg-rose-600 text-white hover:bg-rose-700 shadow-sm",
       ghost: "text-slate-700 hover:bg-slate-100/80 hover:text-slate-900",
